@@ -1,0 +1,22 @@
+﻿<!doctype html>
+<html ng-app>
+<head>
+    <title>$window窗口对象在表达式中的使用</title>
+    <script src="../Script/angular.min.js"
+            type="text/javascript"></script>
+</head>
+<body>
+    <div ng-controller="c2_2">
+        <input type='text' ng-model="text" />
+        <button ng-click="show()">显示</button>
+    </div>
+    <script type="text/javascript">
+        function c2_2($window, $scope) {
+            $scope.text = "";
+            $scope.show = function () {
+                $window.alert("您输入的内容是: " + $scope.text);
+            }
+        }
+    </script>
+</body>
+</html>

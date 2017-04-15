@@ -1,0 +1,42 @@
+﻿<!doctype html>
+<html ng-app="a6_6">
+<head>
+    <title>添加自定义服务依赖项的方法</title>
+    <script src="../Script/angular.min.js"
+            type="text/javascript"></script>
+    <style type="text/css">
+        body {
+            font-size: 12px;
+        }
+
+        .show {
+            background-color: #ccc;
+            padding: 8px;
+            width: 260px;
+            margin: 10px 0px;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="c6_6">
+        <div class="show">您选择的是：{{result}}</div>
+        <button ng-click="confirm('你真的要删除这条记录吗？')">
+            删除
+        </button>
+    </div>
+    <script type="text/javascript">
+        angular.module('a6_6', [])
+             .service('$notify', ['$window', function ($win) {
+                 return function (msg) {
+                     return $win.confirm(msg) ? "确定" : "取消";
+                 }
+             }])
+            .controller('c6_6', ['$scope', '$notify',
+function ($scope, $notify) {
+    $scope.confirm = function (msg) {
+        $scope.result = $notify(msg);
+    };
+}]);
+    </script>
+</body>
+</html>

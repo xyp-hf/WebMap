@@ -1,0 +1,39 @@
+﻿<!doctype html>
+<html ng-app="a5_2">
+<head>
+    <title>使用ngRepeater方式遍历Model对象</title>
+    <script src="../Script/angular.min.js"
+            type="text/javascript"></script>
+    <style type="text/css">
+        body {
+            font-size: 12px;
+        }
+
+        .show {
+            background-color: #ccc;
+            padding: 8px;
+            width: 260px;
+            margin: 10px 0px;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="c5_2">
+        <p ng-repeat=" stu in data" class="show">
+            <span>{{stu.name}}</span>
+            <span>{{stu.sex}}</span>
+        </p>
+    </div>
+    <script type="text/javascript">
+        var a5_2 = angular.module('a5_2', []);
+        a5_2.controller('c5_2', ['$scope', function ($scope) {
+            $scope.data = [
+            { name: "张明明", sex: "女" },
+            { name: "李清思", sex: "女" },
+            { name: "刘小华", sex: "男" },
+            { name: "陈忠忠", sex: "男" }
+            ];
+        }]);
+    </script>
+</body>
+</html>

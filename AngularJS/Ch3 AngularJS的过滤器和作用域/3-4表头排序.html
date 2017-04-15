@@ -1,0 +1,82 @@
+﻿<!doctype html>
+<html ng-app="a3_4">
+<head>
+    <title>表头排序</title>
+    <script src="../Script/angular.min.js"
+            type="text/javascript"></script>
+    <style type="text/css">
+        body {
+            font-size: 12px;
+        }
+
+        ul {
+            list-style-type: none;
+            width: 408px;
+            margin: 0px;
+            padding: 0px;
+        }
+
+            ul li {
+                float: left;
+                padding: 5px 0px;
+            }
+
+            ul .bold {
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+            ul li span {
+                width: 52px;
+                float: left;
+                padding: 0px 10px;
+            }
+
+            ul .focus {
+                background-color: #cccccc;
+            }
+    </style>
+</head>
+<body>
+    <div ng-controller="c3_4">
+        <ul>
+            <li ng-class="{{bold}}">
+                <span>序号</span>
+                <span ng-click="title='name';desc=!desc">
+                    姓名
+                </span>
+                <span ng-click="title='sex';desc=!desc">
+                    性别
+                </span>
+                <span ng-click="title='age';desc=!desc">
+                    年龄
+                </span>
+                <span ng-click="title='score';desc=!desc">
+                    分数
+                </span>
+            </li>
+            <li ng-repeat=" stu in data | orderBy : title : desc">
+                <span>{{$index+1}}</span>
+                <span>{{stu.name}}</span>
+                <span>{{stu.sex}}</span>
+                <span>{{stu.age}}</span>
+                <span>{{stu.score}}</span>
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        var a3_4 = angular.module('a3_4', []);
+        a3_4.controller('c3_4', ['$scope', function ($scope) {
+            $scope.bold = "bold";
+            $scope.title = 'name';
+            $scope.desc = 0;
+            $scope.data = [
+            { name: "张明明", sex: "女", age: 24, score: 95 },
+            { name: "李清思", sex: "女", age: 27, score: 87 },
+            { name: "刘小华", sex: "男", age: 28, score: 86 },
+            { name: "陈忠忠", sex: "男", age: 23, score: 97 }
+            ];
+        }])
+    </script>
+</body>
+</html>

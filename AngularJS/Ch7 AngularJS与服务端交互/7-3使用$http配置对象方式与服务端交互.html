@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html ng-app="a7_3">
+<head>
+    <title>使用$http配置对象方式与服务端交互</title>
+    <script src="../Script/angular.min.js"></script>
+    <link href="Css/css7.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="frame" ng-controller="c7_3">
+        <div class="show">
+            <input type="text" ng-model="num" />
+            <button ng-click="onclick()">验证奇偶</button>
+            <div class="tip">您输入的是：{{result}}</div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        angular.module('a7_3', [])
+          .controller('c7_3', function ($scope, $http) {
+              $scope.num = 0;
+              $scope.result = "偶数";
+              $scope.onclick = function () {
+                  $http({
+                      method: 'GET',
+                      url: 'data/chk.php',
+                      params: {
+                          n: $scope.num
+                      }
+                  }).success(function (data, status,
+headers, config) {
+                      $scope.result = data;
+                  })
+              }
+          });
+    </script>
+</body>
+</html>

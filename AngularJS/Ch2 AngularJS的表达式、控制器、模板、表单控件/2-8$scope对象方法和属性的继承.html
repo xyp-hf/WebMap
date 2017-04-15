@@ -1,0 +1,30 @@
+﻿<!doctype html>
+<html ng-app="a2_8">
+<head>
+    <title>$scope对象方法和属性的继承</title>
+    <script src="../Script/angular.min.js"
+            type="text/javascript"></script>
+</head>
+<body>
+    <div ng-controller="c2_8">
+        <div ng-controller="c2_8_1">
+            <span class="show">{{text}}</span><br />
+            <span class="show">{{child_text}}</span>
+            <input id="btnShow" type="button"
+                   ng-click="click_show();" value="继承" />
+        </div>
+    </div>
+    <script type="text/javascript">
+        var a2_8 = angular.module('a2_8', []);
+        a2_8.controller('c2_8', ['$scope', function ($scope) {
+            $scope.text = 'Hello！Angular';
+            $scope.click_show = function () {
+                $scope.text = "点击按钮后显示的内容！";
+            };
+        }]);
+        a2_8.controller('c2_8_1', ['$scope', function ($scope) {
+            $scope.child_text = '欢迎来到 Angular 的精彩世界！';
+        }]);
+    </script>
+</body>
+</html>

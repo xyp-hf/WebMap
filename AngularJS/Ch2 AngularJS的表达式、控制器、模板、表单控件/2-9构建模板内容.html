@@ -1,0 +1,22 @@
+﻿<!doctype html>
+<html ng-app="a2_9">
+<head>
+    <title>构建模板内容</title>
+    <script src="../Script/angular.min.js"
+            type="text/javascript"></script>
+</head>
+<body>
+    <script type="text/ng-template" id="tplbase">
+        姓名：{{ name }},
+        <br />邮箱：{{email}}
+    </script>
+    <div ng-include src="'tplbase'" ng-controller="c2_9"></div>
+    <script type="text/javascript">
+        var a2_9 = angular.module('a2_9', []);
+        a2_9.controller('c2_9', ['$scope', function ($scope) {
+            $scope.name = '陶国荣';
+            $scope.email = 'tao_guo_rong@163.com';
+        }]);
+    </script>
+</body>
+</html>

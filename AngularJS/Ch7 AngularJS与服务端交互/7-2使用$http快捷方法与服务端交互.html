@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html ng-app="a7_2">
+<head>
+    <title>使用$http快捷方法与服务端交互</title>
+    <script src="../Script/angular.min.js"></script>
+    <link href="Css/css7.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="frame" ng-controller="c7_2">
+        <div class="show">
+            <div class="tip">POST返回的结果是：{{result}}</div>
+            <button ng-click="onclick()">发送</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+        angular.module('a7_2', [])
+            .config(function ($httpProvider) {
+                $httpProvider.defaults.transformRequest =
+function (obj) {
+    var arrStr = [];
+    for (var p in obj) {
+        arrStr.push(encodeURIComponent(p) + "="
++ encodeURIComponent(obj[p]));
+    }
+    return arrStr.join("&");
+}
+                $httpProvider.defaults.headers.post = {
+                    'Content-Type':
+'application/x-www-form-urlencoded'
+                }
+            })
+          .controller('c7_2', function ($scope, $http) {
+              var postData = { name: "陶国荣" }
+              $scope.onclick = function () {
+                  $http.post('data/post.php', postData)
+                      .success(function (data, status, headers,
+config) {
+                          $scope.result = data;
+                      });
+              }
+          });
+    </script>
+</body>
+</html>

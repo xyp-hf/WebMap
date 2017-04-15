@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html ng-app="a10_3">
+<head>
+    <title>解决双大括号绑定元素时的闪烁问题</title>
+    <script src="../Script/angular.min.js"></script>
+    <style type="text/css">
+        .frame {
+            padding: 5px 8px;
+            margin: 0px;
+            font-size: 12px;
+            width: 320px;
+            background-color: #eee;
+        }
+            .frame div {
+                margin: 10px 0px;
+            }
+    </style>
+</head>
+<body>
+    <div ng-controller="c10_3" class="frame">
+        <div id="template" ng-cloak>{{message}}</div>
+    </div>
+        <script type="text/javascript">
+            angular.module('a10_3', [])
+            .controller('c10_3', function ($scope) {
+                $scope.message = 'Hello,Angular!';
+            });
+        </script>
+</body>
+</html>
